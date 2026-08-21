@@ -1,0 +1,228 @@
+ O que é uma árvore?
+
+Em estruturas de dados, uma árvore (tree) é uma estrutura hierárquica formada por nós (nodes).
+
+              A
+            /   \
+           B     C
+          / \     \
+         D   E     F
+
+
+Podemos pensar nela como uma estrutura de "pai e filhos":
+
+A é pai de B e C.
+B é pai de D e E.
+C é pai de F.
+D, E e F não possuem filhos.
+ Raiz — Root
+
+A raiz (root) é o primeiro nó da árvore.
+
+              A  ← ROOT
+            /   \
+           B     C
+
+
+A é a raiz.
+
+Uma árvore normalmente possui uma única raiz.
+
+ Nós e filhos
+
+Cada elemento da árvore é chamado de nó (node).
+
+Um nó pode possuir outros nós abaixo dele, chamados de filhos (children).
+
+       A
+      / \
+     B   C
+
+
+Aqui:
+
+A → pai
+B → filho de A
+C → filho de A
+
+Também podemos falar que B e C são irmãos (siblings).
+
+ Nós folha — Leaf Nodes
+
+Um nó folha (leaf node) é um nó que não possui filhos.
+
+Por exemplo:
+
+              A
+            /   \
+           B     C
+          / \
+         D   E
+
+
+As folhas são:
+
+D
+E
+C
+
+
+Porque nenhum deles possui outro nó abaixo.
+
+Uma maneira fácil de lembrar:
+
+Leaf = folha = nó que está na "ponta" da árvore.
+
+ NULL
+
+Em uma implementação em C, normalmente usamos NULL para indicar que determinado filho não existe.
+
+       A
+      / \
+     B   C
+
+
+Internamente, poderíamos ter:
+
+A
+├── esquerda → B
+└── direita  → C
+
+B
+├── esquerda → NULL
+└── direita  → NULL
+
+C
+├── esquerda → NULL
+└── direita  → NULL
+
+
+Portanto, B e C são folhas porque seus ponteiros para filhos são NULL.
+
+ Árvores binárias
+
+Aqui está uma distinção importante.
+
+Uma árvore binária é uma árvore em que cada nó pode ter no máximo 2 filhos.
+
+Esses dois filhos normalmente são chamados de:
+
+filho esquerdo (left)
+filho direito (right)
+
+Exemplo:
+
+             10
+            /  \
+           5    20
+          / \
+         2   7
+
+
+Observe:
+
+10 → possui 2 filhos
+5  → possui 2 filhos
+20 → possui 0 filhos
+2  → possui 0 filhos
+7  → possui 0 filhos
+
+
+Não podemos fazer:
+
+       10
+     / | \
+    5  8  20
+
+
+e chamar isso de árvore binária, porque 10 possui 3 filhos.
+
+ Árvores com número variável de filhos
+
+Existe outro conceito mais geral: uma árvore em que um nó pode ter qualquer quantidade de filhos.
+
+Por exemplo:
+
+                 A
+          /      |      \
+         B       C       D
+       / | \            / \
+      E  F  G          H   I
+
+
+Nesse caso:
+
+A possui 3 filhos.
+B possui 3 filhos.
+C possui 0 filhos.
+D possui 2 filhos.
+
+Isso não é uma árvore binária, porque existem nós com mais de 2 filhos.
+
+Podemos chamar isso de uma árvore n-ária ou árvore de grau variável, dependendo da definição utilizada.
+
+ Comparando
+Conceito	Quantidade de filhos
+Árvore binária	no máximo 2
+Árvore n-ária	pode ter mais de 2
+Nó folha	0 filhos
+Nó interno	possui pelo menos 1 filho
+Raiz (root)	nó inicial da árvore
+
+Então, uma árvore binária pode ser vista assim:
+
+                    ROOT
+                     |
+                     A
+                   /   \
+                filho  filho
+                 /       \
+                B         C
+               / \
+              D   E
+
+
+E as folhas são:
+
+D, E, C
+
+
+porque:
+
+D → esquerda = NULL, direita = NULL
+E → esquerda = NULL, direita = NULL
+C → esquerda = NULL, direita = NULL
+
+ A ideia principal
+
+Pense na árvore como uma hierarquia:
+
+Root → nós internos → folhas → NULL
+
+Mas cuidado: NULL não é exatamente um tipo de nó da árvore. Ele representa a ausência de um filho.
+
+Em C, isso fica muito claro:
+
+typedef struct No {
+    int valor;
+    struct No *esquerda;
+    struct No *direita;
+} No;
+
+
+Um nó folha poderia ser:
+
+      10
+     /  \
+   NULL NULL
+
+
+Ou seja:
+
+No *raiz = criarArvoreNaoNula(10);
+
+raiz->esquerda == NULL;
+raiz->direita == NULL;
+
+
+Nesse caso, 10 é simultaneamente raiz e folha, porque a árvore possui apenas um nó.
