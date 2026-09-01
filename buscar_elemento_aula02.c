@@ -31,7 +31,6 @@ int buscar(No *arvore, int elemento) {
     if (arvore == NULL) {
         return 0;
     }
-
     if (arvore->valor == elemento) {
         return 1;
     }

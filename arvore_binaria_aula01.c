@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct No {
+typedef struct Arv {
     int valor;
-    struct No *esquerda;
-    struct No *direita;
-} No;
+    struct Arv *esquerda;
+    struct Arv *direita;
+} Arv;
 
-No* criarArvoreNula() {
+Arv* criarArvoreNula() {
     return NULL;
 }
 
-No* criarArvoreNaoNula(int valor) {
-    No *novoNo = (No*) malloc(sizeof(No));
+Arv* criarArvoreNaoNula(int valor) {
+    Arv *novoNo = (Arv*) malloc(sizeof(Arv));
 
     if (novoNo == NULL) {
         printf("Erro: memória insuficiente!\n");
@@ -28,8 +28,8 @@ No* criarArvoreNaoNula(int valor) {
 
 int main() {
 
-    No *arvore1 = criarArvoreNula();
-    No *arvore2 = criarArvoreNaoNula(10);
+    Arv *arvore1 = criarArvoreNula();
+    Arv *arvore2 = criarArvoreNaoNula(10);
 
     arvore2->esquerda = criarArvoreNaoNula(5);
     arvore2->direita = criarArvoreNaoNula(20);
