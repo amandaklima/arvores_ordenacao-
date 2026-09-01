@@ -1,0 +1,14 @@
+#ifndef ARVORE_H
+#define ARVORE_H
+
+typedef struct arv Arv;
+Arv * arv_criavazia();
+Arv * arv_cria(char c , Arv*Sae , Arv*sad);
+int arv_vazia (Arv*a);
+char arv_pertence (Arv*a, char c);
+Arv * arv_libera(Arv*a);
+void arv_imprime (Arv*a);
+int arv_altura(Arv*a);
+int arv_qtd_nos(Arv*a);
+
+#endif
