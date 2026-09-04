@@ -1,0 +1,3 @@
+1. dar cd nome da pasta 'projeto01'
+2.  gcc main.c arvore.c -o programa
+3. ./programa
